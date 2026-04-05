@@ -42,10 +42,10 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nim' => 'string',
-            'name' => 'string',
-            'major' => 'string',
-            'batch_year' => 'integer'
+            'nim' => 'required|string|unique:students,nim,' . $id,
+            'name' => 'required|string',
+            'major' => 'required|string',
+            'batch_year' => 'required|integer'
         ]);
 
         $student = Student::find($id);
